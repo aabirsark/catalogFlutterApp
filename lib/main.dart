@@ -20,12 +20,12 @@ class MyApp extends StatelessWidget {
           fontFamily: GoogleFonts.lato().fontFamily),
       darkTheme: ThemeData(brightness: Brightness.dark),
 
-      //todo : here I create ROUTES
+      // todo : here I create ROUTES
 
       // ! for creating routes you shuold remove {home : ...}
       //  ? home: HomePage()
 
-      initialRoute: "/login", // this is the initial routes
+      initialRoute: MyRoutes.homeRoute, // this is the initial routes
 
       routes: {
         MyRoutes.homeRoute: (context) => HomePage(),
