@@ -1,7 +1,15 @@
 import 'package:catalog/utils/my_routes.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String name = "";
+  bool amime = false;
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -18,7 +26,7 @@ class LoginPage extends StatelessWidget {
                   height: 20.0,
                 ),
                 Text(
-                  "Welcome",
+                  "Welcome $name",
                   style: TextStyle(
                     fontSize: 24.0,
                     fontWeight: FontWeight.bold,
@@ -35,6 +43,11 @@ class LoginPage extends StatelessWidget {
                       TextFormField(
                         decoration: InputDecoration(
                             hintText: "Enter Username", labelText: "Username"),
+                        onChanged: (value) {
+                          setState(() {
+                            name = value;
+                          });
+                        },
                       ),
                       TextFormField(
                         obscureText: true,
@@ -44,15 +57,35 @@ class LoginPage extends StatelessWidget {
                       SizedBox(
                         height: 20.0,
                       ),
-                      ElevatedButton(
-                        onPressed: () {
+                      InkWell(
+                        onTap: () async {
+                          setState(() {
+                            amime = true;
+                          });
+                          await Future.delayed(Duration(seconds: 1));
                           Navigator.pushNamed(context, MyRoutes.homeRoute);
+                          amime = false;
                         },
-                        child: Text(
-                          "Login",
-                          style: TextStyle(fontSize: 15.0),
+                        child: AnimatedContainer(
+                          duration: Duration(seconds: 1),
+                          width: amime ? 40 : 140,
+                          height: 40,
+                          alignment: Alignment.center,
+                          child: amime
+                              ? Icon(Icons.done, color: Colors.white)
+                              : Text(
+                                  "LOGIN",
+                                  style: TextStyle(
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                ),
+                          decoration: BoxDecoration(
+                              color: Colors.deepPurple,
+                              //  ? shape: amime ? BoxShape.circle : BoxShape.rectangle,
+                              borderRadius:
+                                  BorderRadius.circular(amime ? 50 : 10)),
                         ),
-                        style: TextButton.styleFrom(minimumSize: Size(150, 40)),
                       )
                     ],
                   ),
