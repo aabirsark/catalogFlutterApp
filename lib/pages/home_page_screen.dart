@@ -2,6 +2,7 @@ import 'package:catalog/models/catalog.dart';
 import 'package:catalog/widgets/drawer.dart';
 import 'package:catalog/widgets/item_widget.dart';
 import "dart:convert";
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -41,10 +42,38 @@ class _HomePageState extends State<HomePage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: (CatalogItem.products != null && CatalogItem.products.isNotEmpty)
-            ? ListView.builder(
+            ? GridView.builder(
                 itemCount: CatalogItem.products.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 16.0,
+                  crossAxisSpacing: 16.0,
+                ),
                 itemBuilder: (context, index) {
-                  return ItemWidget(item: CatalogItem.products[index]);
+                  final item = CatalogItem.products[index];
+                  return Card(
+                      clipBehavior: Clip.antiAlias,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                      child: GridTile(
+                        child: Container(child: Image.network(item.image)),
+                        header: Container(
+                          child: Text(
+                            item.name,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          padding: const EdgeInsets.all(12.0),
+                          decoration: BoxDecoration(color: Colors.deepPurple),
+                        ),
+                        footer: Container(
+                          child: Text(
+                            item.price.toString(),
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          padding: const EdgeInsets.all(12.0),
+                          decoration: BoxDecoration(color: Colors.grey),
+                        ),
+                      ));
                 },
               )
             : Center(

@@ -8,19 +8,19 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   String name = "";
-  bool amime = false;
+  bool showButton = false;
 
   final _formkey = GlobalKey<FormState>();
 
   moveToNext(BuildContext context) async {
     if (_formkey.currentState.validate()) {
       setState(() {
-        amime = true;
+        showButton = true;
       });
       await Future.delayed(Duration(seconds: 1));
       await Navigator.pushNamed(context, MyRoutes.homeRoute);
       setState(() {
-        amime = false;
+        showButton = false;
       });
     }
   }
@@ -92,15 +92,16 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         Material(
                           color: Colors.deepPurple,
-                          borderRadius: BorderRadius.circular(amime ? 50 : 10),
+                          borderRadius:
+                              BorderRadius.circular(showButton ? 50 : 10),
                           child: InkWell(
                             onTap: () => moveToNext(context),
                             child: AnimatedContainer(
                               duration: Duration(seconds: 1),
-                              width: amime ? 40 : 140,
+                              width: showButton ? 40 : 140,
                               height: 40,
                               alignment: Alignment.center,
-                              child: amime
+                              child: showButton
                                   ? Icon(Icons.done, color: Colors.white)
                                   : Text(
                                       "LOGIN",
