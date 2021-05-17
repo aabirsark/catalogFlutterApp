@@ -1,6 +1,5 @@
 import 'package:catalog/models/catalog.dart';
 import 'package:catalog/pages/home_deatiled_route.dart';
-import 'package:catalog/widgets/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -12,12 +11,13 @@ class CatalogList extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        final item = CatalogItem.products[index];
+        final item = CatalogItem.getItemByPosition(index);
         return InkWell(
             onTap: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
+                      // ! here how VxList send us to next screen......
                       builder: (context) => HomeDetailPage(catalog: item)));
             },
             child: Material(child: CatalogProduct(item: item)));

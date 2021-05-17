@@ -1,4 +1,4 @@
-import 'package:catalog/widgets/themes.dart';
+// import 'package:catalog/widgets/themes.dart';
 import 'package:flutter/material.dart';
 import "package:velocity_x/velocity_x.dart";
 
@@ -10,7 +10,7 @@ class CartPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         title: "Cart".text.make(),
       ),
-      backgroundColor: MyTheme.creamColor,
+      backgroundColor: context.theme.canvasColor,
     );
   }
 }
