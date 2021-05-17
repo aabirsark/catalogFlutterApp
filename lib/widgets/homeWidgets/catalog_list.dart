@@ -20,7 +20,7 @@ class CatalogList extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) => HomeDetailPage(catalog: item)));
             },
-            child: CatalogProduct(item: item));
+            child: Material(child: CatalogProduct(item: item)));
       },
       itemCount: CatalogItem.products.length,
     );
@@ -45,7 +45,7 @@ class CatalogProduct extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              item.name.text.bold.color(MyTheme.darkBlue).make(),
+              item.name.text.bold.make(),
               item.desc.text.textStyle(context.captionStyle).make(),
               10.heightBox,
               ButtonBar(
@@ -56,13 +56,13 @@ class CatalogProduct extends StatelessWidget {
                     ElevatedButton(
                         onPressed: () {},
                         style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(MyTheme.darkBlue),
+                            backgroundColor: MaterialStateProperty.all(
+                                context.theme.buttonColor),
                             shape: MaterialStateProperty.all(StadiumBorder())),
                         child: "Add to Cart".text.make())
                   ]).pOnly(right: 16.0)
             ])),
       ],
-    )).white.rounded.square(150).make().p16();
+    )).color(context.theme.cardColor).rounded.square(150).make().p16();
   }
 }

@@ -91,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                           height: 20.0,
                         ),
                         Material(
-                          color: Colors.deepPurple,
+                          color: Theme.of(context).buttonColor,
                           borderRadius:
                               BorderRadius.circular(showButton ? 50 : 10),
                           child: InkWell(

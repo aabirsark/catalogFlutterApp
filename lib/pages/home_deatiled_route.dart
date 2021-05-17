@@ -16,21 +16,24 @@ class HomeDetailPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
-      bottomNavigationBar: ButtonBar(
-          alignment: MainAxisAlignment.spaceBetween,
-          buttonPadding: EdgeInsets.zero,
-          children: [
-            "\$${catalog.price}".text.bold.xl3.red800.make(),
-            ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(MyTheme.darkBlue),
-                        shape: MaterialStateProperty.all(StadiumBorder())),
-                    child: "Add to Cart".text.make())
-                .h(40)
-          ]).py16().px32(),
-      backgroundColor: MyTheme.creamColor,
+      bottomNavigationBar: Container(
+        color: context.theme.cardColor,
+        child: ButtonBar(
+            alignment: MainAxisAlignment.spaceBetween,
+            buttonPadding: EdgeInsets.zero,
+            children: [
+              "\$${catalog.price}".text.bold.xl3.red800.make(),
+              ElevatedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              context.theme.buttonColor),
+                          shape: MaterialStateProperty.all(StadiumBorder())),
+                      child: "Add to Cart".text.make())
+                  .h(40)
+            ]).py16().px32(),
+      ),
+      backgroundColor: context.theme.canvasColor,
       body: SafeArea(
         child: Column(children: [
           Hero(
@@ -43,10 +46,12 @@ class HomeDetailPage extends StatelessWidget {
             edge: VxEdge.TOP,
             arcType: VxArcType.CONVEY,
             child: Container(
-              color: Colors.white,
+              color: context.theme.cardColor,
               width: context.screenWidth,
               child: Column(children: [
-                catalog.name.text.xl4.bold.color(MyTheme.darkBlue).make(),
+                catalog.name.text.xl4.bold
+                    .color(context.theme.accentColor)
+                    .make(),
                 catalog.desc.text.xl.textStyle(context.captionStyle).make(),
                 10.heightBox,
                 " Clita sea amet takimata kasd eirmod sea aliquyam, eirmod clita rebum duo lorem consetetur sed ipsum sed, gubergren sed rebum dolor elitr justo ipsum amet dolore clita. Ut vero nonumy nonumy sed sed gubergren amet. Justo voluptua dolore sea diam sea sed est, lorem sit."

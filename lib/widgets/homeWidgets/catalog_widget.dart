@@ -3,7 +3,6 @@ import 'package:catalog/widgets/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-
 class CatalogWidget extends StatelessWidget {
   final Item catalog;
 
@@ -19,7 +18,7 @@ class CatalogWidget extends StatelessWidget {
         .box
         .rounded
         .p8
-        .color(MyTheme.creamColor)
+        .color(context.theme.canvasColor)
         .make()
         .p16()
         .w40(context);
