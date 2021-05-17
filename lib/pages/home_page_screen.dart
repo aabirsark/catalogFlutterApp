@@ -1,10 +1,16 @@
 import 'package:catalog/models/catalog.dart';
+import 'package:catalog/utils/my_routes.dart';
+import 'package:catalog/widgets/homeWidgets/catalog_header.dart';
+import 'package:catalog/widgets/homeWidgets/catalog_list.dart';
 import 'package:catalog/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 import "dart:convert";
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// import 'homeWidgets/catalog_header.dart';
+// import 'homeWidgets/catalog_list.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -37,6 +43,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyTheme.creamColor,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, MyRoutes.cartPage);
+        },
+        backgroundColor: MyTheme.darkBlue,
+        child: Icon(CupertinoIcons.cart),
+      ),
       body: SafeArea(
           child: Container(
               // padding: Vx.m20,
@@ -47,97 +60,8 @@ class _HomePageState extends State<HomePage> {
             if (CatalogItem.products != null && CatalogItem.products.isNotEmpty)
               CatalogList().expand()
             else
-              Center(child: CircularProgressIndicator())
+              CircularProgressIndicator().centered().expand()
           ]))),
     );
-  }
-}
-
-class HomeHeader extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: Vx.m32,
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        "Catalog App".text.xl5.bold.color(MyTheme.darkBlue).make(),
-        "Trending Products".text.xl2.make(),
-      ]),
-    );
-  }
-}
-
-class CatalogList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        final item = CatalogItem.products[index];
-        return CatalogProduct(item: item);
-      },
-      itemCount: CatalogItem.products.length,
-    );
-  }
-}
-
-class CatalogProduct extends StatelessWidget {
-  final Item item;
-
-  const CatalogProduct({Key key, @required this.item})
-      : assert(item != null),
-        super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return VxBox(
-        child: Row(
-      children: [
-        CatalogWidget(catalog: item),
-        Expanded(
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-              item.name.text.bold.color(MyTheme.darkBlue).make(),
-              item.desc.text.textStyle(context.captionStyle).make(),
-              10.heightBox,
-              ButtonBar(
-                  alignment: MainAxisAlignment.spaceBetween,
-                  buttonPadding: EdgeInsets.zero,
-                  children: [
-                    "\$${item.price}".text.bold.make(),
-                    ElevatedButton(
-                        onPressed: () {},
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(MyTheme.darkBlue),
-                            shape: MaterialStateProperty.all(StadiumBorder())),
-                        child: "Buy".text.make())
-                  ]).pOnly(right: 16.0)
-            ])),
-      ],
-    )).white.rounded.square(150).make().p16();
-  }
-}
-
-class CatalogWidget extends StatelessWidget {
-  final Item catalog;
-
-  const CatalogWidget({Key key, @required this.catalog})
-      : assert(catalog != null),
-        super(key: key);
-
-  // const CatalogWidget({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Image.network(catalog.image)
-        .box
-        .rounded
-        .p8
-        .color(MyTheme.creamColor)
-        .make()
-        .p16()
-        .w40(context);
   }
 }
