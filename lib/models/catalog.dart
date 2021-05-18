@@ -6,10 +6,10 @@ class CatalogItem {
   // ? We used static for using the following without creating the class
   static List<Item> products;
 
-   static Item getItemById(int id) =>
+    Item getItemById(int id) =>
       products.firstWhere((element) => element.id == id, orElse: null);
 
-  static Item getItemByPosition(int pos) => products[pos];
+   Item getItemByPosition(int pos) => products[pos];
 }
 
 class Item {
