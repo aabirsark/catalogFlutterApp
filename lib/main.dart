@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
 
       // ? this is to set the mode of the app
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
 
