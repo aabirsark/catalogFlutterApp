@@ -1,5 +1,4 @@
 import 'package:catalog/models/catalog.dart';
-import 'package:catalog/widgets/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -45,21 +44,23 @@ class HomeDetailPage extends StatelessWidget {
             height: 20,
             edge: VxEdge.TOP,
             arcType: VxArcType.CONVEY,
-            child: Container(
-              color: context.theme.cardColor,
-              width: context.screenWidth,
-              child: Column(children: [
-                catalog.name.text.xl4.bold
-                    .color(context.theme.accentColor)
-                    .make(),
-                catalog.desc.text.xl.textStyle(context.captionStyle).make(),
-                10.heightBox,
-                " Clita sea amet takimata kasd eirmod sea aliquyam, eirmod clita rebum duo lorem consetetur sed ipsum sed, gubergren sed rebum dolor elitr justo ipsum amet dolore clita. Ut vero nonumy nonumy sed sed gubergren amet. Justo voluptua dolore sea diam sea sed est, lorem sit."
-                    .text
-                    .textStyle(context.captionStyle)
-                    .make()
-                    .p16()
-              ]).py64(),
+            child: SingleChildScrollView(
+              child: Container(
+                color: context.theme.cardColor,
+                width: context.screenWidth,
+                child: Column(children: [
+                  catalog.name.text.xl4.bold
+                      .color(context.theme.accentColor)
+                      .make(),
+                  catalog.desc.text.xl.textStyle(context.captionStyle).make(),
+                  10.heightBox,
+                  " Clita sea amet takimata kasd eirmod sea aliquyam, eirmod clita rebum duo lorem consetetur sed ipsum sed, gubergren sed rebum dolor elitr justo ipsum amet dolore clita. Ut vero nonumy nonumy sed sed gubergren amet. Justo voluptua dolore sea diam sea sed est, lorem sit. Magna tempor magna at et sed lorem et est sea voluptua. Nonumy no gubergren sed et sea dolor dolores, vero lorem aliquyam eirmod rebum diam accusam. Justo rebum amet lorem."
+                      .text
+                      .textStyle(context.captionStyle)
+                      .make()
+                      .p16()
+                ]).py64(),
+              ),
             ),
           ))
         ]),

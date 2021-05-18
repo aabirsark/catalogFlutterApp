@@ -1,4 +1,4 @@
-// import 'package:catalog/widgets/themes.dart';
+import 'package:catalog/widgets/CartTotal.dart';
 import 'package:flutter/material.dart';
 import "package:velocity_x/velocity_x.dart";
 
@@ -11,6 +11,12 @@ class CartPage extends StatelessWidget {
         title: "Cart".text.make(),
       ),
       backgroundColor: context.theme.canvasColor,
+      // ? here i do make a body
+      body: Column(children: [
+        CartList().p12().expand(),
+        Divider(),
+        CartTotalWidget(),
+      ]),
     );
   }
 }
