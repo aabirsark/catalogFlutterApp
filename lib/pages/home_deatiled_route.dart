@@ -1,5 +1,6 @@
 import 'package:catalog/models/cart.dart';
 import 'package:catalog/models/catalog.dart';
+import 'package:catalog/widgets/add_to_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -12,7 +13,6 @@ class HomeDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _cart = CartItem();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -24,19 +24,9 @@ class HomeDetailPage extends StatelessWidget {
             buttonPadding: EdgeInsets.zero,
             children: [
               "\$${catalog.price}".text.bold.xl3.red800.make(),
-              ElevatedButton(
-                      onPressed: () {
-                        _cart.addItems(catalog);
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: "Successfully Added".text.make(),
-                        ));
-                      },
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                              context.theme.buttonColor),
-                          shape: MaterialStateProperty.all(StadiumBorder())),
-                      child: "Add to Cart".text.make())
-                  .h(40)
+              AddToCart(
+                catalog: catalog,
+              ).h(40)
             ]).py16().px32(),
       ),
       backgroundColor: context.theme.canvasColor,

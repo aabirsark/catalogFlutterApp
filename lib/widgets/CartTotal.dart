@@ -1,5 +1,5 @@
 import 'package:catalog/models/cart.dart';
-import 'package:catalog/models/catalog.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -42,16 +42,21 @@ class _CartListState extends State<CartList> {
   var _cart = CartItem();
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context, index) => ListTile(
-        leading: Icon(Icons.done),
-        trailing: IconButton(
-          icon: Icon(CupertinoIcons.delete_simple),
-          onPressed: () {},
-        ),
-        title: "item ${_cart.items[index].name}".text.make(),
-      ),
-      itemCount: _cart.items.length,
-    );
+    return _cart.items.isEmpty
+        ? "Nothing To Show".text.xl3.makeCentered()
+        : ListView.builder(
+            itemBuilder: (context, index) => ListTile(
+              leading: Icon(Icons.done),
+              trailing: IconButton(
+                icon: Icon(CupertinoIcons.delete_simple),
+                onPressed: () {
+                  _cart.removeItems(_cart.items[index]);
+                  setState(() {});
+                },
+              ),
+              title: "item ${_cart.items[index].name}".text.make(),
+            ),
+            itemCount: _cart.items.length,
+          );
   }
 }

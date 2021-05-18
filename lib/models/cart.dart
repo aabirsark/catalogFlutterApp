@@ -1,7 +1,7 @@
 import 'package:catalog/models/catalog.dart';
 
 class CartItem {
-  //TODO :  here let's make the class SingleTorn
+  //todo :  here let's make the class SingleTorn
   static final cartItem = CartItem._internal();
 
   CartItem._internal();
