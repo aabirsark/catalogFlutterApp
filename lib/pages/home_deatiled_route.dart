@@ -1,4 +1,3 @@
-import 'package:catalog/models/cart.dart';
 import 'package:catalog/models/catalog.dart';
 import 'package:catalog/widgets/add_to_cart.dart';
 import 'package:flutter/material.dart';

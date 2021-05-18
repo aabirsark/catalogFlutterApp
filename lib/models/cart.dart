@@ -26,11 +26,6 @@ class CartItem {
 
   // todo : here i gonna define {remove items} and {add items};
 
-  // ? add Items
-  void addItems(Item item) => _itemIds.add(item.id);
-
-  // ? remove items
-  void removeItems(Item item) => _itemIds.remove(item.id);
 }
 
 class AddMutation extends VxMutation<MyStore> {
@@ -39,7 +34,16 @@ class AddMutation extends VxMutation<MyStore> {
   AddMutation(this.item);
   @override
   perform() {
-    // TODO: implement perform
     store.cartItem._itemIds.add(item.id);
+  }
+}
+
+class RemoveMutation extends VxMutation<MyStore> {
+  final Item item;
+
+  RemoveMutation(this.item);
+  @override
+  perform() {
+    store.cartItem._itemIds.remove(item.id);
   }
 }
