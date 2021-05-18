@@ -4,11 +4,6 @@ import 'package:flutter/material.dart';
 
 class CatalogItem {
   // ! LET's Also Make This Class To Be SingleTorn
-  static final cartItem = CatalogItem._internal();
-
-  CatalogItem._internal();
-
-  factory CatalogItem() => cartItem;
 
   // ? We used static for using the following without creating the class
   static List<Item> products;

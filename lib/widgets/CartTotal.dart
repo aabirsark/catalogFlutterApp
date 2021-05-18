@@ -33,12 +33,7 @@ class CartTotalWidget extends StatelessWidget {
   }
 }
 
-class CartList extends StatefulWidget {
-  @override
-  _CartListState createState() => _CartListState();
-}
-
-class _CartListState extends State<CartList> {
+class CartList extends StatelessWidget {
   var _cart = CartItem();
   @override
   Widget build(BuildContext context) {
@@ -51,7 +46,7 @@ class _CartListState extends State<CartList> {
                 icon: Icon(CupertinoIcons.delete_simple),
                 onPressed: () {
                   _cart.removeItems(_cart.items[index]);
-                  setState(() {});
+                  // setState(() {});
                 },
               ),
               title: "item ${_cart.items[index].name}".text.make(),

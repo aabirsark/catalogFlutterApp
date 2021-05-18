@@ -2,11 +2,7 @@ import 'package:catalog/models/catalog.dart';
 
 class CartItem {
   //todo :  here let's make the class SingleTorn
-  static final cartItem = CartItem._internal();
 
-  CartItem._internal();
-
-  factory CartItem() => cartItem;
 
   // ? this is private class that's why I have to build an getter for it
   CatalogItem _item;
