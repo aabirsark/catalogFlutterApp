@@ -1,8 +1,9 @@
+import 'package:catalog/core/store.dart';
 import 'package:catalog/models/catalog.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class CartItem {
   //todo :  here let's make the class SingleTorn
-
 
   // ? this is private class that's why I have to build an getter for it
   CatalogItem _item;
@@ -30,4 +31,15 @@ class CartItem {
 
   // ? remove items
   void removeItems(Item item) => _itemIds.remove(item.id);
+}
+
+class AddMutation extends VxMutation<MyStore> {
+  final Item item;
+
+  AddMutation(this.item);
+  @override
+  perform() {
+    // TODO: implement perform
+    store.cartItem._itemIds.add(item.id);
+  }
 }

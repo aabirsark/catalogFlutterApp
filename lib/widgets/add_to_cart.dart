@@ -1,3 +1,4 @@
+import 'package:catalog/core/store.dart';
 import 'package:catalog/models/cart.dart';
 import 'package:catalog/models/catalog.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,20 +12,19 @@ class AddToCart extends StatelessWidget {
     @required this.catalog,
   }) : super(key: key);
 
-  CartItem _cart = CartItem();
+  // CartItem _cart = CartItem();
 
   @override
   Widget build(BuildContext context) {
+    VxState.watch(context, on: [AddMutation]);
+    final CartItem _cart = (VxState.store as MyStore).cartItem;
+    /// final CatalogItem _catalog = (VxState.store as MyStore).catalog;
+
     bool isInCart = _cart.items.contains(catalog) ?? false;
     return ElevatedButton(
         onPressed: () {
           if (!isInCart) {
-            isInCart = isInCart.toggle(); // or u can use {!isAdded}
-            // ? Now Creating some cart and catlog var..
-
-            CatalogItem _catalog = CatalogItem();
-            _cart.catalog = _catalog;
-            _cart.addItems(catalog);
+            AddMutation(catalog);
             // setState(() {});
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: "${catalog.name} is added to cart".text.make()));
