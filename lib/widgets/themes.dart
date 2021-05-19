@@ -39,8 +39,9 @@ class MyTheme {
 
   // ? Colors
 
-  static Color creamColor = Vx.hexToColor("#ededed");
+  static Color creamColor = Vx.gray200;
   static Color darkCreamColor = Vx.gray900;
   static Color lightBlueColor = Vx.indigo800;
   static Color darkBlue = Color(0xff403b58);
+  // Vx.hexToColor("#ededed");
 }
